@@ -1,6 +1,6 @@
 import { Container, Header, Icon, Content } from './Accordion.styled';
 
-interface IAccordion {
+export interface IAccordion {
     className?: string;
     header: React.ReactNode;
     children: React.ReactNode;
@@ -23,7 +23,7 @@ const Accordion: React.FC<IAccordion> = ({
         <Container className={className}>
             <Header onClick={onClickHandler}>
                 {header}
-                <Icon>+</Icon>
+                <Icon expanded={expanded} />
             </Header>
             <Content
                 initial={false}

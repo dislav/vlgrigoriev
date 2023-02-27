@@ -4,15 +4,15 @@ import { motion, Variants } from 'framer-motion';
 
 import { Project } from 'contentlayer/generated';
 
-import { Container, Wrapper, Title, Grid } from './ProjectList.styled';
-import ProjectCard from '@/components/ProjectCard/ProjectCard';
+import { Container, Wrapper, Title, Grid } from './Projects.styled';
+import ProjectCard from '@/components/Projects/ProjectCard/ProjectCard';
 
 interface IProjectList {
     className?: string;
     projects: Project[];
 }
 
-const ProjectList: React.FC<IProjectList> = ({ className, projects }) => {
+const Projects: React.FC<IProjectList> = ({ className, projects }) => {
     const card: Variants = {
         hidden: {
             opacity: 0,
@@ -57,4 +57,4 @@ const ProjectList: React.FC<IProjectList> = ({ className, projects }) => {
     );
 };
 
-export default ProjectList;
+export default Projects;

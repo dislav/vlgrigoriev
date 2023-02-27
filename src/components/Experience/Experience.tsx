@@ -1,77 +1,71 @@
 'use client';
 
 import { useState } from 'react';
+import { motion, Variants } from 'framer-motion';
 
-import {
-    Container,
-    Wrapper,
-    Title,
-    List,
-    AccordionHeader,
-    AccordionPeriod,
-    AccordionTitle,
-    AccordionContent,
-} from './Experience.styled';
-import Accordion from '@/components/Accordion/Accordion';
+import { Job } from 'contentlayer/generated';
+
+import { Container, Wrapper, Title, List } from './Experience.styled';
+import ExperienceCard from '@/components/Experience/ExperienceCard/ExperienceCard';
 
 interface IExperience {
     className?: string;
+    jobs: Job[];
 }
 
-const Experience: React.FC<IExperience> = ({ className }) => {
-    const [activeId, setActiveId] = useState<number | null>(0);
+const Experience: React.FC<IExperience> = ({ className, jobs }) => {
+    const [activeIndex, setActiveIndex] = useState<number | null>(0);
+
+    const sortJobs = jobs.sort((a, b) =>
+        new Date(a.startDate) > new Date(b.startDate) ? -1 : 1
+    );
+
+    const card: Variants = {
+        hidden: {
+            opacity: 0,
+            y: 100,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 1,
+                ease: [0.2, 0.85, 0.25, 1],
+            },
+        },
+    };
 
     const onClick = (id: number) => (isExpended: boolean) => {
-        setActiveId(!isExpended ? id : null);
+        setActiveIndex(!isExpended ? id : null);
     };
 
     return (
         <Container className={className} id="experience">
             <Wrapper>
-                <Title>Опыт работы</Title>
+                <Title
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '0px 0px -100px 0px' }}
+                    transition={{ duration: 0.8, ease: [0.2, 0.85, 0.25, 1] }}
+                >
+                    Опыт работы
+                </Title>
                 <List>
-                    <Accordion
-                        expanded={activeId === 0}
-                        onClick={onClick(0)}
-                        header={
-                            <AccordionHeader>
-                                <AccordionPeriod>
-                                    2021 – Настоящее время
-                                </AccordionPeriod>
-                                <AccordionTitle>
-                                    Frontend Developer / Websky
-                                </AccordionTitle>
-                            </AccordionHeader>
-                        }
-                    >
-                        <AccordionContent>
-                            Разработка корпоративных сайтов, интерфейсов на
-                            Javascript, React/Next.js. Тимлидинг, наставничество
-                            и управление персоналом, помощь в проведении
-                            собеседований, курирование и обучение стажеров,
-                            участие в спринтах.
-                        </AccordionContent>
-                    </Accordion>
-                    <Accordion
-                        expanded={activeId === 1}
-                        onClick={onClick(1)}
-                        header={
-                            <AccordionHeader>
-                                <AccordionPeriod>2019 – 2021</AccordionPeriod>
-                                <AccordionTitle>
-                                    Frontend Developer / Only
-                                </AccordionTitle>
-                            </AccordionHeader>
-                        }
-                    >
-                        <AccordionContent>
-                            Разработка корпоративных сайтов, интерфейсов на
-                            Javascript, React/Next.js. Тимлидинг, наставничество
-                            и управление персоналом, помощь в проведении
-                            собеседований, курирование и обучение стажеров,
-                            участие в спринтах.
-                        </AccordionContent>
-                    </Accordion>
+                    {sortJobs.map((job, index) => (
+                        <motion.div
+                            key={job._id}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={card}
+                        >
+                            <ExperienceCard
+                                expanded={activeIndex === index}
+                                onClick={onClick(index)}
+                                job={job}
+                            />
+                        </motion.div>
+                    ))}
                 </List>
             </Wrapper>
         </Container>

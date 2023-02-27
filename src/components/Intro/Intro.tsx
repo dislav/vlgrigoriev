@@ -8,10 +8,13 @@ import {
     Content,
     Title,
     Description,
+    Buttons,
     Link,
+    Icon,
 } from './Intro.styled';
 
 import memoji from '../../../public/images/memoji.jpg';
+import { Github, Telegram } from '@/icons';
 
 interface IIntro {
     className?: string;
@@ -52,14 +55,24 @@ const Intro: React.FC<IIntro> = ({ className }) => {
                         с&nbsp;отличным пользовательским опытом.
                     </Description>
                 </Content>
-                <Link
-                    href="https://t.me/vlgrigoriev"
-                    target="_blank"
-                    rel="noreferrer"
-                    variants={variants}
-                >
-                    Связаться
-                </Link>
+                <Buttons variants={variants}>
+                    <Link
+                        href="https://github.com/dislav"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <Icon>{Github}</Icon>
+                        Github
+                    </Link>
+                    <Link
+                        href="https://t.me/vlgrigoriev"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <Icon>{Telegram}</Icon>
+                        Telegram
+                    </Link>
+                </Buttons>
             </Wrapper>
         </Container>
     );

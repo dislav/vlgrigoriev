@@ -2,7 +2,7 @@ import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 
 export const Project = defineDocumentType(() => ({
     name: 'Project',
-    filePathPattern: '**/*.mdx',
+    filePathPattern: `projects/**/*.mdx`,
     contentType: 'mdx',
     fields: {
         title: {
@@ -24,7 +24,37 @@ export const Project = defineDocumentType(() => ({
     },
 }));
 
+export const Job = defineDocumentType(() => ({
+    name: 'Job',
+    filePathPattern: `jobs/**/*.md`,
+    fields: {
+        title: {
+            type: 'string',
+            required: true,
+        },
+        company: {
+            type: 'string',
+            required: true,
+        },
+        url: {
+            type: 'string',
+            required: true
+        },
+        tags: {
+            type: 'list',
+            of: { type: 'string' },
+        },
+        startDate: {
+            type: 'date',
+            required: true,
+        },
+        endDate: {
+            type: 'date',
+        },
+    },
+}));
+
 export default makeSource({
     contentDirPath: 'content',
-    documentTypes: [Project],
+    documentTypes: [Project, Job],
 });

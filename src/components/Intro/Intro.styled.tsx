@@ -71,12 +71,36 @@ export const Description = styled(motion.p)`
     text-align: center;
 `;
 
-export const Link = styled(motion.a)`
+export const Buttons = styled(motion.div)`
+    display: flex;
+    gap: 12px;
+`;
+
+export const Link = styled.a`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: ${({ theme }) => theme.colors.white};
     font-size: 18px;
     font-weight: 500;
     line-height: 24px;
-    background: ${({ theme }) => theme.colors.primary};
+    border: 1px solid ${({ theme }) => theme.colors.gray};
+    background: transparent;
     border-radius: 30px;
     padding: 12px 20px;
+    transition: border-color 0.15s, background 0.15s;
+
+    &:hover {
+        border-color: ${({ theme }) => theme.colors.primary};
+        background: ${({ theme }) => theme.colors.primary};
+    }
+`;
+
+export const Icon = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
 `;
