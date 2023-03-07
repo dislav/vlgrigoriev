@@ -1,10 +1,21 @@
+'use client';
+
 import { Container, Wrapper, Logo, Menu, MenuItem } from './Header.styled';
 
-interface IHeader {
+interface HeaderProps {
     className?: string;
 }
 
-const Header: React.FC<IHeader> = ({ className }) => {
+export default function Header({ className }: HeaderProps) {
+    const onClickLink = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+
+        const id = (e.target as HTMLAnchorElement).href.split('#')[1];
+        if (id && document.getElementById(id)) {
+            document.getElementById(id)!.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <Container className={className}>
             <Wrapper
@@ -16,13 +27,17 @@ const Header: React.FC<IHeader> = ({ className }) => {
                     <span>vlgrigoriev.</span> ©2023
                 </Logo>
                 <Menu>
-                    <MenuItem href="/#projects">Проекты</MenuItem>
-                    <MenuItem href="/#experience">Опыт</MenuItem>
-                    <MenuItem href="/#contacts">Контакты</MenuItem>
+                    <MenuItem href="/#home" onClick={onClickLink}>
+                        Главная
+                    </MenuItem>
+                    <MenuItem href="/#projects" onClick={onClickLink}>
+                        Проекты
+                    </MenuItem>
+                    <MenuItem href="/#experience" onClick={onClickLink}>
+                        Опыт
+                    </MenuItem>
                 </Menu>
             </Wrapper>
         </Container>
     );
-};
-
-export default Header;
+}

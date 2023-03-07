@@ -7,6 +7,12 @@ export const Container = styled(Link)`
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    &:hover {
+        img {
+          transform: scale(1.04);
+        }
+    }
 `;
 
 export const Preview = styled.div`
@@ -14,6 +20,11 @@ export const Preview = styled.div`
     padding-top: 100%;
     border-radius: 20px;
     overflow: hidden;
+
+    img {
+        transform: scale(1);
+        transition: transform 0.4s ease;
+    }
 `;
 
 export const Content = styled.div`

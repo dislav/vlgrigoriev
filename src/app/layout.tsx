@@ -9,15 +9,24 @@ import Contact from '@/components/Contact/Contact';
 
 export const metadata: Metadata = {
     title: {
-        default: 'Vladislav Grigoriev • Frontend Developer',
-        template: 'Vladislav Grigoriev • %s',
+        default: 'Vladislav Grigoriev',
+        template: '%s • Vladislav Grigoriev',
     },
     description: 'Frontend developer portfolio',
     icons: {
         icon: '/favicon.ico',
     },
     openGraph: {
-        title: 'Vladislav Grigoriev • Frontend Developer',
+        title: {
+            default: 'Vladislav Grigoriev',
+            template: '%s • Vladislav Grigoriev',
+        },
+    },
+    twitter: {
+        title: {
+            default: 'Vladislav Grigoriev',
+            template: '%s • Vladislav Grigoriev',
+        },
     },
 };
 

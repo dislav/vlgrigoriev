@@ -37,7 +37,7 @@ const Intro: React.FC<IIntro> = ({ className }) => {
     };
 
     return (
-        <Container className={className} id="intro">
+        <Container className={className} id="home">
             <Wrapper
                 initial="hidden"
                 animate="visible"

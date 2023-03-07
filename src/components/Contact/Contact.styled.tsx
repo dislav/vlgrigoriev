@@ -53,10 +53,10 @@ export const Container = styled.a`
         &:before {
             content: '';
             position: absolute;
-            top: -25%;
-            left: -25%;
-            right: -25%;
-            bottom: -25%;
+            top: -20%;
+            left: -20%;
+            right: -20%;
+            bottom: -20%;
             border-radius: 50%;
         }
 

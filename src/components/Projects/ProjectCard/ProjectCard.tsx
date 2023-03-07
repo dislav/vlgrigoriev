@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import dayjs from 'dayjs';
 
 import { Project } from 'contentlayer/generated';
 
@@ -12,20 +13,17 @@ const ProjectCard: React.FC<IProjectCard> = ({
     className,
     title,
     image,
-    year,
+    publishAt,
     _raw,
 }) => {
     return (
-        <Container
-            className={className}
-            href={`/projects/${_raw.flattenedPath}`}
-        >
+        <Container className={className} href={`/${_raw.flattenedPath}`}>
             <Preview>
                 <Image src={image} alt={title} fill />
             </Preview>
             <Content>
                 <Title>{title}</Title>
-                <Year>{year}</Year>
+                <Year>{dayjs(publishAt).format('YYYY')}</Year>
             </Content>
         </Container>
     );

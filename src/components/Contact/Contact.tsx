@@ -27,7 +27,7 @@ const Contact: React.FC<IContact> = ({ className }) => {
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
 
-            setPoint({ x: x / 10, y: y / 10 });
+            setPoint({ x: x / 16, y: y / 16 });
         }
     };
 
@@ -54,7 +54,7 @@ const Contact: React.FC<IContact> = ({ className }) => {
                     transition: {
                         type: 'spring',
                         mass: isHover ? 1 : 1.6,
-                        stiffness: isHover ? 80 : 400,
+                        stiffness: isHover ? 80 : 380,
                     },
                 }}
             >

@@ -13,13 +13,40 @@ export const Project = defineDocumentType(() => ({
             type: 'string',
             required: true,
         },
-        year: {
-            type: 'number',
+        preview: {
+            type: 'string',
+            required: true,
+        },
+        previewBackground: {
+            type: 'string',
             required: true,
         },
         publishAt: {
             type: 'date',
             required: true,
+        },
+    },
+    computedFields: {
+        slug: {
+            type: 'string',
+            resolve: (project) =>
+                project._raw.flattenedPath.replace('projects/', ''),
+        },
+        structuredData: {
+            type: 'object',
+            resolve: (project) => ({
+                '@context': 'https://schema.org',
+                '@type': 'Project',
+                name: project.title,
+                headline: project.title,
+                url: `https://vlgrigoriev.dev/${project._raw.flattenedPath}`,
+                author: {
+                    '@type': 'Person',
+                    name: 'Vladislav Grigoriev',
+                },
+                datePublished: project.publishAt,
+                dateModified: project.publishAt,
+            }),
         },
     },
 }));
@@ -38,7 +65,7 @@ export const Job = defineDocumentType(() => ({
         },
         url: {
             type: 'string',
-            required: true
+            required: true,
         },
         tags: {
             type: 'list',
