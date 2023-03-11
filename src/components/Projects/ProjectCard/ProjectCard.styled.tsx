@@ -10,7 +10,7 @@ export const Container = styled(Link)`
 
     &:hover {
         img {
-          transform: scale(1.04);
+            transform: scale(1.04);
         }
     }
 `;
