@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 
 import { Container, Circle, Video } from './Contact.styled';
+import Image from '@/components/Image/Image';
 
 import contact from '../../../public/images/contact.svg';
 import memoji from '../../../public/images/memoji.jpg';

@@ -1,5 +1,4 @@
 import { Variants } from 'framer-motion';
-import Image from 'next/image';
 
 import {
     Container,
@@ -12,6 +11,7 @@ import {
     Link,
     Icon,
 } from './Intro.styled';
+import Image from '@/components/Image/Image';
 
 import memoji from '../../../public/images/memoji.jpg';
 import { Github, Telegram } from '@/icons';

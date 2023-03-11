@@ -1,11 +1,20 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { AnimationProps } from 'framer-motion';
 
 import { allProjects } from 'contentlayer/generated';
 
-import { Container, Header, Title, Preview, Mdx } from './page.styled';
+import {
+    Container,
+    Header,
+    Description,
+    Title,
+    Preview,
+    PreviewWrapper,
+    ImageWrapper,
+    Mdx,
+} from './page.styled';
+import Image from '@/components/Image/Image';
 
 interface ParamsProps {
     params: {
@@ -28,6 +37,9 @@ export async function generateMetadata({
         openGraph: {
             title: project.title,
         },
+        twitter: {
+            title: project.title,
+        },
     };
 }
 
@@ -47,7 +59,6 @@ export default function Page({ params }: ParamsProps) {
         transition: {
             duration: 1.3,
             ease: [0.2, 0.85, 0.25, 1],
-            delay: 0.15,
         },
     };
 
@@ -61,15 +72,18 @@ export default function Page({ params }: ParamsProps) {
             />
 
             <Header {...fadeIn}>
+                <Description>{project.description}</Description>
                 <Title>{project.title}</Title>
             </Header>
-            <Preview {...fadeIn} background={project.previewBackground}>
-                <Image
-                    src={project.preview}
-                    alt={project.title}
-                    width={1240}
-                    height={600}
-                />
+            <Preview {...fadeIn} background={project.background}>
+                <PreviewWrapper>
+                    <ImageWrapper
+                        {...fadeIn}
+                        transition={{ ...fadeIn.transition, delay: 0.5 }}
+                    >
+                        <Image src={project.preview} alt={project.title} fill />
+                    </ImageWrapper>
+                </PreviewWrapper>
             </Preview>
             <Mdx code={project.body.code} />
         </Container>

@@ -1,13 +1,15 @@
-import Image from 'next/image';
+import { MotionConfig } from 'framer-motion';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
-import { Container, Content } from './Mdx.styled';
+import { Container, Image, SectionContent } from './Mdx.styled';
 import Section from '@/components/Mdx/Section/Section';
+import TwoImages from '@/components/Mdx/TwoImages/TwoImages';
 
 const components = {
     Image,
     Section,
-    Content,
+    SectionContent,
+    TwoImages,
 };
 
 interface MdxProps {
@@ -20,7 +22,14 @@ export default function Mdx({ className, code }: MdxProps) {
 
     return (
         <Container className={className}>
-            <MDXContent components={components} />
+            <MotionConfig
+                transition={{
+                    duration: 1.3,
+                    ease: [0.2, 0.85, 0.25, 1],
+                }}
+            >
+                <MDXContent components={components} />
+            </MotionConfig>
         </Container>
     );
 }

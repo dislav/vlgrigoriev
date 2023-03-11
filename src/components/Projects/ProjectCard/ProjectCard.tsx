@@ -1,9 +1,9 @@
-import Image from 'next/image';
 import dayjs from 'dayjs';
 
 import { Project } from 'contentlayer/generated';
 
 import { Container, Preview, Content, Title, Year } from './ProjectCard.styled';
+import Image from '@/components/Image/Image';
 
 interface IProjectCard extends Project {
     className?: string;

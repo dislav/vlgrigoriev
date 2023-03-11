@@ -9,6 +9,10 @@ export const Project = defineDocumentType(() => ({
             type: 'string',
             required: true,
         },
+        description: {
+            type: 'string',
+            required: true,
+        },
         image: {
             type: 'string',
             required: true,
@@ -17,7 +21,7 @@ export const Project = defineDocumentType(() => ({
             type: 'string',
             required: true,
         },
-        previewBackground: {
+        background: {
             type: 'string',
             required: true,
         },

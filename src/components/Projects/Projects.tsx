@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, Variants } from 'framer-motion';
+import dayjs from 'dayjs';
 
 import { Project } from 'contentlayer/generated';
 
@@ -28,6 +29,19 @@ const Projects: React.FC<IProjectList> = ({ className, projects }) => {
         },
     };
 
+    const sortProjects = projects.sort((a, b) => {
+        const aDate = dayjs(a.publishAt);
+        const bDate = dayjs(b.publishAt);
+
+        if (aDate.isAfter(bDate)) {
+            return -1;
+        } else if (aDate.isBefore(bDate)) {
+            return 1;
+        }
+
+        return 0;
+    });
+
     return (
         <Container className={className} id="projects">
             <Wrapper>
@@ -40,7 +54,7 @@ const Projects: React.FC<IProjectList> = ({ className, projects }) => {
                     Проекты
                 </Title>
                 <Grid>
-                    {projects.map((project) => (
+                    {sortProjects.map((project) => (
                         <motion.div
                             key={project._id}
                             initial="hidden"

@@ -2,6 +2,8 @@
 
 import styled from 'styled-components';
 
+import ImageComponent from '@/components/Image/Image';
+
 export const Container = styled.article`
     h2 {
         font-size: 40px;
@@ -22,7 +24,11 @@ export const Container = styled.article`
     }
 `;
 
-export const Content = styled.div`
+export const Image = styled(ImageComponent)`
+    border-radius: 20px;
+`;
+
+export const SectionContent = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
