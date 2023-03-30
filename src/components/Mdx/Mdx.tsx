@@ -1,4 +1,3 @@
-import { MotionConfig } from 'framer-motion';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
 import { Container, Image, SectionContent } from './Mdx.styled';
@@ -22,14 +21,7 @@ export default function Mdx({ className, code }: MdxProps) {
 
     return (
         <Container className={className}>
-            <MotionConfig
-                transition={{
-                    duration: 1.3,
-                    ease: [0.2, 0.85, 0.25, 1],
-                }}
-            >
-                <MDXContent components={components} />
-            </MotionConfig>
+            <MDXContent components={components} />
         </Container>
     );
 }

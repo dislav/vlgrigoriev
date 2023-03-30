@@ -44,7 +44,7 @@ const ExperienceCard: React.FC<IExperienceCard> = ({ job, ...props }) => {
                 <Footer>
                     <Link href={job.url} target="_blank">
                         <Icon>{LinkIcon}</Icon>
-                        {job.url.replace('https://', '').slice(0, -1)}
+                        {job.urlText}
                     </Link>
                     {job.tags && (
                         <Tags>

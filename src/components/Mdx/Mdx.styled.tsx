@@ -22,9 +22,15 @@ export const Container = styled.article`
         font-weight: 600;
         line-height: 32px;
     }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
 `;
 
 export const Image = styled(ImageComponent)`
+    max-width: ${({ theme }) => theme.variables.maxWidth - 300}px;
     border-radius: 20px;
 `;
 

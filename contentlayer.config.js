@@ -1,5 +1,7 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 
+const URL_REGEX = /^https?:|\/+/gm;
+
 export const Project = defineDocumentType(() => ({
     name: 'Project',
     filePathPattern: `projects/**/*.mdx`,
@@ -12,6 +14,9 @@ export const Project = defineDocumentType(() => ({
         description: {
             type: 'string',
             required: true,
+        },
+        url: {
+            type: 'string',
         },
         image: {
             type: 'string',
@@ -81,6 +86,12 @@ export const Job = defineDocumentType(() => ({
         },
         endDate: {
             type: 'date',
+        },
+    },
+    computedFields: {
+        urlText: {
+            type: 'string',
+            resolve: (job) => job.url.replace(URL_REGEX, ''),
         },
     },
 }));

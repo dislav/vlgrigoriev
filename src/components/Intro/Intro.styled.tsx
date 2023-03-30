@@ -8,7 +8,7 @@ export const Container = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 85vh;
+    min-height: calc(100vh - 208px);
 `;
 
 export const Wrapper = styled(motion.div)`
@@ -73,25 +73,24 @@ export const Description = styled(motion.p)`
 
 export const Buttons = styled(motion.div)`
     display: flex;
-    gap: 12px;
+    gap: 20px;
 `;
 
 export const Link = styled.a`
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
     color: ${({ theme }) => theme.colors.white};
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 24px;
-    border: 1px solid ${({ theme }) => theme.colors.gray};
-    background: transparent;
+    background: ${({ theme }) => theme.colors.gray80};
     border-radius: 30px;
-    padding: 12px 20px;
-    transition: border-color 0.15s, background 0.15s;
+    padding: 14px 20px 14px 18px;
+    transition: background 0.15s;
 
     &:hover {
-        border-color: ${({ theme }) => theme.colors.primary};
         background: ${({ theme }) => theme.colors.primary};
     }
 `;
@@ -100,7 +99,11 @@ export const Icon = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
+    width: 24px;
+    height: 24px;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 `;

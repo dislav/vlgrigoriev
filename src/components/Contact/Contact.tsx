@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef } from 'react';
 
 import { Container, Circle, Video } from './Contact.styled';
 import Image from '@/components/Image/Image';
+import { usePoint } from '@/hooks';
 
 import contact from '../../../public/images/contact.svg';
 import memoji from '../../../public/images/memoji.jpg';
@@ -13,47 +14,26 @@ interface IContact {
 }
 
 const Contact: React.FC<IContact> = ({ className }) => {
-    const [isHover, setIsHover] = useState(false);
-    const [point, setPoint] = useState({ x: 0, y: 0 });
-
-    const onMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        setIsHover(true);
-
-        if (e.target) {
-            const rect = (
-                e.target as HTMLAnchorElement
-            ).getBoundingClientRect();
-
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-
-            setPoint({ x: x / 16, y: y / 16 });
-        }
-    };
-
-    const onMouseLeave = () => {
-        setIsHover(false);
-        setPoint({ x: 0, y: 0 });
-    };
+    const containerRef = useRef<HTMLAnchorElement>(null);
+    const { x, y, isHover } = usePoint(containerRef);
 
     return (
         <Container
             className={className}
             href="https://t.me/vlgrigoriev"
             target="_blank"
-            onMouseMove={onMouseMove}
-            onMouseLeave={onMouseLeave}
+            ref={containerRef}
         >
             <Circle>
                 <Image src={contact} alt="" fill />
             </Circle>
             <Video
                 animate={{
-                    x: point.x,
-                    y: point.y,
+                    x: x / 16,
+                    y: y / 16,
                     transition: {
                         type: 'spring',
-                        mass: isHover ? 1 : 1.6,
+                        mass: 1.6,
                         stiffness: isHover ? 80 : 380,
                     },
                 }}
