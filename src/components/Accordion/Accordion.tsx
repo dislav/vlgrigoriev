@@ -42,6 +42,7 @@ const Accordion: React.FC<IAccordion> = ({
                               },
                           }
                 }
+                transition={{ duration: 0.3 }}
             >
                 {children}
             </Content>

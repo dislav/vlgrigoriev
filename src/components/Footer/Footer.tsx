@@ -35,7 +35,7 @@ const Footer: React.FC<IFooter> = ({ className }) => {
             <Wrapper>
                 <Text>
                     <motion.span variants={variants}>
-                        Есть проект? Давай обсудим
+                        Есть&nbsp;проект? Давай&nbsp;обсудим
                     </motion.span>
                     <motion.a
                         href="https://t.me/vlgrigoriev"
@@ -47,7 +47,9 @@ const Footer: React.FC<IFooter> = ({ className }) => {
                     </motion.a>
                 </Text>
                 <Row>
-                    <span>© Vladislav Grigoriev 2023</span>
+                    <span>
+                        © Vladislav Grigoriev {new Date().getFullYear()}
+                    </span>
                     <Socials>
                         <a
                             href="https://t.me/vlgrigoriev"

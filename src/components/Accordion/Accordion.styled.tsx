@@ -3,7 +3,10 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
+import { Breakpoint, up } from '@/styles/utils';
+
 export const Container = styled.div`
+    position: relative;
     background: ${({ theme }) => theme.colors.gray80};
     border-radius: 20px;
 `;
@@ -11,6 +14,8 @@ export const Container = styled.div`
 export const Header = styled.div`
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 8px;
     padding: 20px;
     cursor: pointer;
 `;
@@ -20,11 +25,15 @@ export const Icon = styled.div<{ expanded?: boolean }>`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     background: ${({ theme }) => theme.colors.white};
     border-radius: 50%;
-    margin-left: auto;
+
+    ${up(Breakpoint.MD)} {
+        width: 40px;
+        height: 40px;
+    }
 
     &:before,
     &:after {

@@ -3,6 +3,7 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
+import { Breakpoint, up } from '@/styles/utils';
 import MdxComponent from '@/components/Mdx/Mdx';
 
 export const Container = styled.div`
@@ -15,7 +16,11 @@ export const Back = styled(motion.div)`
     display: flex;
     width: 100%;
     max-width: ${({ theme }) => theme.variables.maxWidth}px;
-    padding: 60px 20px 0;
+    padding: 40px 20px 0;
+
+    ${up(Breakpoint.MD)} {
+        padding-top: 60px;
+    }
 
     a {
         display: flex;
@@ -43,10 +48,15 @@ export const Header = styled(motion.div)`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 10px;
     width: 100%;
     max-width: ${({ theme }) => theme.variables.maxWidth}px;
-    padding: 60px 20px 80px;
+    padding: 40px 20px 60px;
+
+    ${up(Breakpoint.MD)} {
+        gap: 20px;
+        padding: 60px 20px 80px;
+    }
 
     a {
         display: flex;
@@ -55,7 +65,11 @@ export const Header = styled(motion.div)`
         color: ${({ theme }) => theme.colors.white};
         font-size: 16px;
         font-weight: 500;
-        line-height: 32px;
+        line-height: 24px;
+
+        ${up(Breakpoint.MD)} {
+            font-size: 18px;
+        }
 
         svg {
             width: 16px;
@@ -66,44 +80,73 @@ export const Header = styled(motion.div)`
 
 export const Description = styled.span`
     color: ${({ theme }) => theme.colors.primary};
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
-    line-height: 32px;
+    line-height: 24px;
+
+    ${up(Breakpoint.MD)} {
+        font-size: 24px;
+        line-height: 32px;
+    }
 `;
 
 export const Title = styled.h1`
     color: ${({ theme }) => theme.colors.white};
-    font-size: 48px;
+    font-size: 32px;
     font-weight: 600;
     line-height: 48px;
+
+    ${up(Breakpoint.MD)} {
+        font-size: 48px;
+        line-height: 48px;
+    }
 `;
 
 export const Preview = styled(motion.div)`
     width: 100%;
     max-width: ${({ theme }) => theme.variables.maxWidth + 200}px;
     padding: 0 20px;
-    overflow: hidden;
 `;
 
 export const PreviewWrapper = styled.div<{ background: string }>`
+    display: flex;
+    justify-content: center;
     width: 100%;
     background: ${({ background }) => background};
     border-radius: 20px;
-    padding-top: 40px;
+    padding-top: 16px;
+    overflow: hidden;
+
+    ${up(Breakpoint.MD)} {
+        padding-top: 40px;
+    }
+`;
+
+export const AspectRatio = styled.div<{ $width: number; $height: number }>`
+    position: relative;
+    padding-top: ${({ $width, $height }) => ($height / $width) * 100}%;
+
+    img {
+        object-fit: cover;
+    }
 `;
 
 export const ImageWrapper = styled(motion.div)`
-    position: relative;
-    padding-top: 46.875%;
+    width: 100%;
+    max-width: ${({ theme }) => theme.variables.maxWidth}px;
 `;
 
 export const Mdx = styled(MdxComponent)`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 80px;
+    gap: 40px;
     width: 100%;
     max-width: ${({ theme }) => theme.variables.maxWidth}px;
     color: ${({ theme }) => theme.colors.white};
     padding: 60px 20px;
+
+    ${up(Breakpoint.MD)} {
+        gap: 80px;
+    }
 `;

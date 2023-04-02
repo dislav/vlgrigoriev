@@ -14,12 +14,13 @@ import {
     Title,
     Preview,
     PreviewWrapper,
+    AspectRatio,
     ImageWrapper,
     Mdx,
 } from './page.styled';
 import MotionProvider from '@/app/motion-provider';
 import Image from '@/components/Image/Image';
-import { ArrowBack, ArrowRight } from '@/icons';
+import { ArrowBack, ArrowLink } from '@/icons';
 
 interface ParamsProps {
     params: {
@@ -91,7 +92,7 @@ export default function Page({ params }: ParamsProps) {
                     {project.url && (
                         <Link href={project.url} target="_blank">
                             Открыть проект
-                            {ArrowRight}
+                            {ArrowLink}
                         </Link>
                     )}
                 </Header>
@@ -106,11 +107,13 @@ export default function Page({ params }: ParamsProps) {
                                 delay: 0.3,
                             }}
                         >
-                            <Image
-                                src={project.preview}
-                                alt={project.title}
-                                fill
-                            />
+                            <AspectRatio $width={1920} $height={900}>
+                                <Image
+                                    src={project.preview}
+                                    alt={project.title}
+                                    fill
+                                />
+                            </AspectRatio>
                         </ImageWrapper>
                     </PreviewWrapper>
                 </Preview>

@@ -1,4 +1,7 @@
-import { Variants } from 'framer-motion';
+'use client';
+
+import { useEffect, useRef } from 'react';
+import { useInView, Variants } from 'framer-motion';
 
 import {
     Container,
@@ -12,6 +15,7 @@ import {
     Icon,
 } from './Intro.styled';
 import Image from '@/components/Image/Image';
+import { useApp } from '@/hooks';
 
 import memoji from '../../../public/images/memoji.jpg';
 import { Github, Telegram } from '@/icons';
@@ -21,6 +25,13 @@ interface IIntro {
 }
 
 const Intro: React.FC<IIntro> = ({ className }) => {
+    const containerRef = useRef<HTMLElement>(null);
+    const isInView = useInView(containerRef, { amount: 0.65 });
+
+    const { setIntroVisible } = useApp();
+
+    useEffect(() => setIntroVisible(isInView), [isInView]);
+
     const variants: Variants = {
         hidden: {
             opacity: 0,
@@ -29,15 +40,11 @@ const Intro: React.FC<IIntro> = ({ className }) => {
         visible: {
             opacity: 1,
             y: 0,
-            transition: {
-                duration: 1.5,
-                ease: [0.2, 0.85, 0.25, 1],
-            },
         },
     };
 
     return (
-        <Container className={className} id="home">
+        <Container className={className} id="home" ref={containerRef}>
             <Wrapper
                 initial="hidden"
                 animate="visible"

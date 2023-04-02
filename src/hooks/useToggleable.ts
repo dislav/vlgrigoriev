@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const useToggleable = (state = false) => {
+export function useToggleable(state = false) {
     const [isOpen, setIsOpen] = useState(state);
 
     const onOpen = () => {
@@ -16,4 +16,4 @@ export const useToggleable = (state = false) => {
     };
 
     return { isOpen, setIsOpen, onOpen, onClose, onToggle };
-};
+}

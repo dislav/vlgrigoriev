@@ -3,12 +3,18 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
+import { Breakpoint, up } from '@/styles/utils';
+
 export const Container = styled.section`
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: calc(100vh - 208px);
+    min-height: calc(100vh - 168px);
+
+    ${up(Breakpoint.MD)} {
+        min-height: calc(100vh - 208px);
+    }
 `;
 
 export const Wrapper = styled(motion.div)`
@@ -25,8 +31,13 @@ export const Wrapper = styled(motion.div)`
 
 export const Avatar = styled(motion.div)`
     position: relative;
-    width: 140px;
-    height: 140px;
+    width: 120px;
+    height: 120px;
+
+    ${up(Breakpoint.MD)} {
+        width: 140px;
+        height: 140px;
+    }
 
     &:before {
         content: '';
@@ -52,28 +63,45 @@ export const Content = styled.div`
     justify-content: center;
     align-items: center;
     gap: 20px;
-    width: 65%;
+
+    ${up(Breakpoint.XL)} {
+        width: 65%;
+    }
 `;
 
 export const Title = styled(motion.h1)`
     color: ${({ theme }) => theme.colors.white};
-    font-size: 70px;
+    font-size: 32px;
     font-weight: 600;
-    line-height: 72px;
+    line-height: 32px;
     text-align: center;
+
+    ${up(Breakpoint.MD)} {
+        font-size: 72px;
+        line-height: 72px;
+    }
 `;
 
 export const Description = styled(motion.p)`
     color: ${({ theme }) => theme.colors.gray};
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
-    line-height: 32px;
+    line-height: 24px;
     text-align: center;
+
+    ${up(Breakpoint.MD)} {
+        font-size: 18px;
+        line-height: 32px;
+    }
 `;
 
 export const Buttons = styled(motion.div)`
     display: flex;
-    gap: 20px;
+    gap: 12px;
+
+    ${up(Breakpoint.MD)} {
+        gap: 20px;
+    }
 `;
 
 export const Link = styled.a`

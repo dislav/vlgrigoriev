@@ -25,10 +25,6 @@ const Projects: React.FC<IProjectList> = ({ className, projects }) => {
         visible: {
             opacity: 1,
             y: 0,
-            transition: {
-                duration: 1,
-                ease: [0.2, 0.85, 0.25, 1],
-            },
         },
     };
 
@@ -39,7 +35,6 @@ const Projects: React.FC<IProjectList> = ({ className, projects }) => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '0px 0px -100px 0px' }}
-                    transition={{ duration: 0.8, ease: [0.2, 0.85, 0.25, 1] }}
                 >
                     Проекты
                 </Title>

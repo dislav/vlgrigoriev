@@ -15,7 +15,7 @@ import {
     Tags,
     Tag,
 } from './ExperienceCard.styled';
-import { Link as LinkIcon } from '@/icons';
+import { ArrowLink } from '@/icons';
 
 interface IExperienceCard extends Omit<IAccordion, 'header' | 'children'> {
     job: Job;
@@ -43,7 +43,7 @@ const ExperienceCard: React.FC<IExperienceCard> = ({ job, ...props }) => {
                 <Body dangerouslySetInnerHTML={{ __html: job.body.html }} />
                 <Footer>
                     <Link href={job.url} target="_blank">
-                        <Icon>{LinkIcon}</Icon>
+                        <Icon>{ArrowLink}</Icon>
                         {job.urlText}
                     </Link>
                     {job.tags && (

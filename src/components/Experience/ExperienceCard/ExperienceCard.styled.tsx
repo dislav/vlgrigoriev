@@ -2,6 +2,7 @@
 
 import styled from 'styled-components';
 
+import { Breakpoint, up } from '@/styles/utils';
 import Accordion from '@/components/Accordion/Accordion';
 
 export const Container = styled(Accordion)``;
@@ -11,16 +12,25 @@ export const Header = styled.div`
     flex-direction: column;
     gap: 4px;
     color: ${({ theme }) => theme.colors.gray};
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 24px;
+
+    ${up(Breakpoint.MD)} {
+        font-size: 16px;
+    }
 `;
 
 export const Title = styled.span`
     color: ${({ theme }) => theme.colors.white};
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
-    line-height: 32px;
+    line-height: 24px;
+
+    ${up(Breakpoint.MD)} {
+        font-size: 24px;
+        line-height: 32px;
+    }
 `;
 
 export const Content = styled.div`
@@ -66,16 +76,24 @@ export const Icon = styled.div`
 
 export const Tags = styled.div`
     display: flex;
-    column-gap: 10px;
-    row-gap: 6px;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    ${up(Breakpoint.MD)} {
+        gap: 10px;
+    }
 `;
 
 export const Tag = styled.span`
     color: ${({ theme }) => theme.colors.white};
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 32px;
     background: ${({ theme }) => theme.colors.primary};
     border-radius: 30px;
     padding: 0 12px;
+
+    ${up(Breakpoint.MD)} {
+        font-size: 16px;
+    }
 `;

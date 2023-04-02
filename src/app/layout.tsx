@@ -13,7 +13,32 @@ export const metadata: Metadata = {
     },
     description: 'Frontend developer portfolio',
     icons: {
-        icon: '/favicon.ico',
+        icon: [
+            { url: '/favicon.png' },
+            {
+                url: '/favicon-128x128.png',
+                sizes: '128x128',
+                type: 'image/png',
+            },
+            {
+                url: '/favicon-256x256.png',
+                sizes: '256x256',
+                type: 'image/png',
+            },
+        ],
+        apple: [
+            { url: '/apple-icon.png' },
+            {
+                url: '/apple-icon-128x128.png',
+                sizes: '128x128',
+                type: 'image/png',
+            },
+            {
+                url: '/apple-icon-256x256.png',
+                sizes: '256x256',
+                type: 'image/png',
+            },
+        ],
     },
     openGraph: {
         title: {

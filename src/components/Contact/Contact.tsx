@@ -4,10 +4,9 @@ import { useRef } from 'react';
 
 import { Container, Circle, Video } from './Contact.styled';
 import Image from '@/components/Image/Image';
-import { usePoint } from '@/hooks';
+import { useApp, usePoint } from '@/hooks';
 
 import contact from '../../../public/images/contact.svg';
-import memoji from '../../../public/images/memoji.jpg';
 
 interface IContact {
     className?: string;
@@ -16,12 +15,14 @@ interface IContact {
 const Contact: React.FC<IContact> = ({ className }) => {
     const containerRef = useRef<HTMLAnchorElement>(null);
     const { x, y, isHover } = usePoint(containerRef);
+    const { introVisible } = useApp();
 
     return (
         <Container
             className={className}
             href="https://t.me/vlgrigoriev"
             target="_blank"
+            visible={!introVisible}
             ref={containerRef}
         >
             <Circle>
@@ -29,16 +30,22 @@ const Contact: React.FC<IContact> = ({ className }) => {
             </Circle>
             <Video
                 animate={{
-                    x: x / 16,
-                    y: y / 16,
+                    x: x / 8,
+                    y: y / 8,
                     transition: {
                         type: 'spring',
-                        mass: 1.6,
-                        stiffness: isHover ? 80 : 380,
+                        mass: 1.8,
+                        stiffness: isHover ? 80 : 280,
                     },
                 }}
             >
-                <Image src={memoji} alt="Vladislav Grigoriev" fill />
+                <video
+                    src="/memoji-video.mp4"
+                    autoPlay
+                    playsInline
+                    muted
+                    loop
+                />
             </Video>
         </Container>
     );

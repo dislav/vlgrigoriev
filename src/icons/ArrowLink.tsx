@@ -1,4 +1,4 @@
-export const Link = (
+export const ArrowLink = (
     <svg
         width="10"
         height="10"

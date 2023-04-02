@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useToggleable } from '@/hooks/useToggleable';
 
-export const usePoint = (
-    container: React.RefObject<HTMLElement> | undefined
-) => {
+export function usePoint(container: React.RefObject<HTMLElement> | undefined) {
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
 
@@ -47,4 +45,4 @@ export const usePoint = (
     }, []);
 
     return { x, y, isHover };
-};
+}
