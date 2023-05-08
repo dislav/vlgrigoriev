@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description: 'Frontend developer portfolio',
     icons: {
         icon: [
-            { url: '/favicon.png' },
+            { url: '/favicon.png-64x64.png', type: 'image/png' },
             {
                 url: '/favicon-128x128.png',
                 sizes: '128x128',
@@ -40,6 +40,7 @@ export const metadata: Metadata = {
             },
         ],
     },
+    metadataBase: new URL('https://vlgrigoriev.dev'),
     openGraph: {
         title: {
             default: 'Vladislav Grigoriev',
