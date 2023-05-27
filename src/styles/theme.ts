@@ -13,5 +13,7 @@ export const theme: DefaultTheme = {
 
         gray: '#C4C0CC',
         gray80: '#1F1D24',
+
+        purple80: '#2d2c34',
     },
 };
