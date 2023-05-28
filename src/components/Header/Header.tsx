@@ -43,7 +43,7 @@ export default function Header({ className }: HeaderProps) {
     });
 
     const transition: Transition = {
-        duration: 0.5,
+        duration: 0.4,
         ease: [0.2, 0.85, 0.25, 1],
     };
 
@@ -82,7 +82,7 @@ export default function Header({ className }: HeaderProps) {
                                 width: isOpen ? 36 : 0,
                                 opacity: isOpen ? 1 : 0,
                             }}
-                            transition={{ ...transition, duration: 0.4 }}
+                            transition={{ ...transition, duration: 0.3 }}
                             layout
                         >
                             <Image src={memoji} alt={'Vladislav Grigoriev'} />

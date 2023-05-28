@@ -10,7 +10,7 @@ export const Wrapper = styled(motion.div)`
     align-items: center;
     width: 100%;
     max-width: ${({ theme }) => theme.variables.maxWidth + 120}px;
-    padding: 40px 80px;
+    padding: 32px 80px;
 `;
 
 export const Line = styled(motion.div)`
@@ -42,7 +42,7 @@ export const Container = styled(motion.header)`
 
     &[data-animate='true'] {
         ${Wrapper} {
-            padding: 24px 20px;
+            padding: 24px 20px 8px;
         }
 
         ${Line} {
