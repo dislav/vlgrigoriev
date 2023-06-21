@@ -3,7 +3,7 @@
 import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 
-import { Breakpoint, up } from '@/styles/utils';
+import { Breakpoint, up } from '@/styles';
 
 const rotate = keyframes`
   from {

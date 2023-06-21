@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-import { Breakpoint, up } from '@/styles/utils';
+import { Breakpoint, up } from '@/styles';
 
 export const Container = styled.section`
     position: relative;
@@ -13,7 +13,7 @@ export const Container = styled.section`
     min-height: calc(100vh - 168px);
 
     ${up(Breakpoint.MD)} {
-        min-height: calc(100vh - 208px);
+        min-height: calc(100vh - 200px);
     }
 `;
 

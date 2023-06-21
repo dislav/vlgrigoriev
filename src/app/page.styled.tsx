@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 
-import { Breakpoint, up } from '@/styles/utils';
+import { Breakpoint, up } from '@/styles';
 
 export const Main = styled.main`
     display: flex;

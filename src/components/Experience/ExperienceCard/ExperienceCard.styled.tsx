@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 
-import { Breakpoint, up } from '@/styles/utils';
+import { Breakpoint, up } from '@/styles';
 import Accordion from '@/components/Accordion/Accordion';
 
 export const Container = styled(Accordion)``;

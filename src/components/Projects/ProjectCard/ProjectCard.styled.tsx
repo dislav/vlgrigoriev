@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-import { Breakpoint, up } from '@/styles/utils';
+import { Breakpoint, up } from '@/styles';
 
 export const Container = styled(motion.div)`
     position: relative;

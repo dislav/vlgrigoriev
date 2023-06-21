@@ -1,8 +1,8 @@
 'use client';
 
 import {
+    Target,
     Transition,
-    TargetAndTransition,
     useMotionValueEvent,
     useScroll,
 } from 'framer-motion';
@@ -19,10 +19,11 @@ import {
     Menu,
     MenuItem,
 } from './Header.styled';
-import { useToggleable } from '@/hooks';
+import { useMediaQuery, useToggleable } from '@/hooks';
 
 import memoji from '../../../public/images/memoji.jpg';
 import Image from '@/components/Image/Image';
+import { Breakpoint } from '@/styles';
 
 interface HeaderProps {
     className?: string;
@@ -32,27 +33,30 @@ export default function Header({ className }: HeaderProps) {
     const { colors } = useTheme()!;
     const { isOpen, onOpen, onClose } = useToggleable();
 
+    const isTablet = useMediaQuery({ minWidth: Breakpoint.MD });
+
     const { scrollYProgress } = useScroll();
 
     useMotionValueEvent(scrollYProgress, 'change', (latestValue) => {
-        if (latestValue > 0.25) {
-            onOpen();
-        } else {
-            onClose();
+        if (isTablet) {
+            if (latestValue > 0.25) {
+                onOpen();
+            } else {
+                onClose();
+            }
         }
     });
+
+    const animate: Target = {
+        background: isTablet
+            ? rgba(colors.purple80, isOpen ? 0.7 : 0)
+            : rgba(colors.purple80, 0.7),
+        backdropFilter: isTablet ? `blur(${isOpen ? 16 : 0}px)` : 'blur(16px)',
+    };
 
     const transition: Transition = {
         duration: 0.4,
         ease: [0.2, 0.85, 0.25, 1],
-    };
-
-    const animate: TargetAndTransition = {
-        background: isOpen
-            ? rgba(colors.purple80, 0.7)
-            : rgba(colors.purple80, 0),
-        borderRadius: isOpen ? '40px' : '8px',
-        backdropFilter: isOpen ? 'blur(16px)' : 'blur(0px)',
     };
 
     const onClickLink = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -77,17 +81,22 @@ export default function Header({ className }: HeaderProps) {
                 <Line animate={animate} transition={transition} layout>
                     <Logo href="/" transition={transition} layout>
                         <Avatar
-                            initial={{ width: 0, opacity: 0 }}
+                            initial={{
+                                width: 0,
+                                opacity: 0,
+                                transform: 'scale(0)',
+                            }}
                             animate={{
                                 width: isOpen ? 36 : 0,
                                 opacity: isOpen ? 1 : 0,
+                                transform: `scale(${isOpen ? 1 : 0})`,
                             }}
-                            transition={{ ...transition, duration: 0.3 }}
+                            transition={transition}
                             layout
                         >
                             <Image src={memoji} alt={'Vladislav Grigoriev'} />
                         </Avatar>
-                        <Name layout>
+                        <Name transition={transition} layout>
                             vlgrigoriev.{' '}
                             <span>©{new Date().getFullYear()}</span>
                         </Name>

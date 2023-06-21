@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-import { Breakpoint, up } from '@/styles/utils';
+import { Breakpoint, up } from '@/styles';
 import MdxComponent from '@/components/Mdx/Mdx';
 
 export const Container = styled.div`
@@ -104,7 +104,7 @@ export const Title = styled.h1`
 
 export const Preview = styled(motion.div)`
     width: 100%;
-    max-width: ${({ theme }) => theme.variables.maxWidth + 200}px;
+    max-width: ${({ theme }) => theme.variables.maxWidth + 120}px;
     padding: 0 20px;
 `;
 
@@ -140,13 +140,14 @@ export const Mdx = styled(MdxComponent)`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 60px;
     width: 100%;
-    max-width: ${({ theme }) => theme.variables.maxWidth}px;
+    max-width: ${({ theme }) => theme.variables.maxWidth - 160}px;
     color: ${({ theme }) => theme.colors.white};
-    padding: 60px 20px;
+    padding: 60px 20px 40px;
 
     ${up(Breakpoint.MD)} {
-        gap: 80px;
+        gap: 120px;
+        padding-top: 120px;
     }
 `;

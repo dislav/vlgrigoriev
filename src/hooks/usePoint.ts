@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { useToggleable } from '@/hooks/useToggleable';
+import { useToggleable } from '@/hooks';
 
 export function usePoint(container: React.RefObject<HTMLElement> | undefined) {
     const [x, setX] = useState(0);

@@ -3,13 +3,12 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-import { Breakpoint, up } from '@/styles/utils';
+import { Breakpoint, up } from '@/styles';
 
 export const Container = styled(motion.div)`
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: ${({ theme }) => theme.variables.maxWidth - 300}px;
     gap: 40px;
 
     ${up(Breakpoint.MD)} {

@@ -59,13 +59,6 @@ const Footer: React.FC<IFooter> = ({ className }) => {
                             Telegram
                         </a>
                         <a
-                            href="https://vk.com/vl.grigoriev"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            Vkontakte
-                        </a>
-                        <a
                             href="https://github.com/dislav"
                             target="_blank"
                             rel="noreferrer"

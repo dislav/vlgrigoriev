@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const manrope = Manrope({ subsets: ['cyrillic', 'latin'] });
 
-export default createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   html {
     font-family: ${manrope.style.fontFamily};
   }
