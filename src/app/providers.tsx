@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 
 import AppProvider from '@/app/app-provider';
 
-import { theme, GlobalStyle } from '@/styles';
+import { theme, GlobalStyle } from '@/shared/styles';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
     return (

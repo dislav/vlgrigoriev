@@ -1,11 +1,13 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { AnimationProps, Transition } from 'framer-motion';
 import dayjs from 'dayjs';
 
+import MotionConfig from '@/app/motion-config';
 import { allProjects } from 'contentlayer/generated';
-
+import { ArrowBack, ArrowLink } from '@/shared/icons';
 import {
     Container,
     Back,
@@ -18,9 +20,6 @@ import {
     ImageWrapper,
     Mdx,
 } from './page.styled';
-import MotionProvider from '@/app/motion-provider';
-import Image from '@/components/Image/Image';
-import { ArrowBack, ArrowLink } from '@/icons';
 
 interface ParamsProps {
     params: {
@@ -70,7 +69,7 @@ export default function Page({ params }: ParamsProps) {
     };
 
     return (
-        <MotionProvider transition={transition}>
+        <MotionConfig transition={transition}>
             <Container>
                 <script
                     type="application/ld+json"
@@ -98,7 +97,7 @@ export default function Page({ params }: ParamsProps) {
                 </Header>
 
                 <Preview {...animation}>
-                    <PreviewWrapper background={project.background}>
+                    <PreviewWrapper $background={project.background}>
                         <ImageWrapper
                             {...animation}
                             transition={{
@@ -120,6 +119,6 @@ export default function Page({ params }: ParamsProps) {
 
                 <Mdx code={project.body.code} />
             </Container>
-        </MotionProvider>
+        </MotionConfig>
     );
 }

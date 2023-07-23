@@ -3,8 +3,8 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-import { Breakpoint, up } from '@/styles';
-import MdxComponent from '@/components/Mdx/Mdx';
+import { Breakpoint, up } from '@/shared/styles';
+import { Mdx as MdxComponent } from '@/shared/ui';
 
 export const Container = styled.div`
     display: flex;
@@ -108,11 +108,11 @@ export const Preview = styled(motion.div)`
     padding: 0 20px;
 `;
 
-export const PreviewWrapper = styled.div<{ background: string }>`
+export const PreviewWrapper = styled.div<{ $background: string }>`
     display: flex;
     justify-content: center;
     width: 100%;
-    background: ${({ background }) => background};
+    background: ${({ $background }) => $background};
     border-radius: 20px;
     padding-top: 16px;
     overflow: hidden;

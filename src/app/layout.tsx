@@ -1,58 +1,37 @@
 import { Metadata } from 'next';
+import { Manrope } from 'next/font/google';
 
 import StyledComponentsRegistry from '@/app/registry';
-
 import Providers from '@/app/providers';
-import Footer from '@/components/Footer/Footer';
-import Contact from '@/components/Contact/Contact';
+import { Footer } from '@/shared/ui';
+import { Contact } from '@/widgets/Contact';
+
+const manrope = Manrope({ subsets: ['cyrillic', 'latin'] });
+
+const title = 'Vladislav Grigoriev';
+const description = 'Frontend developer portfolio';
 
 export const metadata: Metadata = {
     title: {
-        default: 'Vladislav Grigoriev',
-        template: '%s • Vladislav Grigoriev',
+        default: title,
+        template: `%s • ${title}`,
     },
-    description: 'Frontend developer portfolio',
-    icons: {
-        icon: [
-            { url: '/favicon.png-64x64.png', type: 'image/png' },
-            {
-                url: '/favicon-128x128.png',
-                sizes: '128x128',
-                type: 'image/png',
-            },
-            {
-                url: '/favicon-256x256.png',
-                sizes: '256x256',
-                type: 'image/png',
-            },
-        ],
-        apple: [
-            { url: '/apple-icon.png' },
-            {
-                url: '/apple-icon-128x128.png',
-                sizes: '128x128',
-                type: 'image/png',
-            },
-            {
-                url: '/apple-icon-256x256.png',
-                sizes: '256x256',
-                type: 'image/png',
-            },
-        ],
-    },
-    metadataBase: new URL('https://vlgrigoriev.dev'),
+    description,
     openGraph: {
         title: {
-            default: 'Vladislav Grigoriev',
-            template: '%s • Vladislav Grigoriev',
+            default: title,
+            template: `%s • ${title}`,
         },
+        description,
     },
     twitter: {
         title: {
-            default: 'Vladislav Grigoriev',
-            template: '%s • Vladislav Grigoriev',
+            default: title,
+            template: `%s • ${title}`,
         },
+        description,
     },
+    metadataBase: new URL('https://vlgrigoriev.dev'),
 };
 
 export default function RootLayout({
@@ -61,8 +40,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="ru">
-            <head />
+        <html lang="ru" className={manrope.className}>
             <body>
                 <StyledComponentsRegistry>
                     <Providers>

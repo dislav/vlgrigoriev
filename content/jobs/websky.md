@@ -3,12 +3,12 @@ title: Frontend Developer
 company: Websky
 url: https://websky.tech/
 tags:
-- Typescript
 - React
 - Redux
+- Typescript
 - NestJS
 - GraphQL
-- Gatsby
+- Docker
 startDate: 2021-07-01
 ---
 

@@ -3,12 +3,12 @@ title: Frontend Developer
 company: Only
 url: https://only.digital/
 tags:
-- HTML
-- CSS
-- Typescript
 - React
 - Redux
 - Next.js
+- SCSS
+- Javascript
+- Typescript
 - Docker 
 startDate: 2019-06-01
 endDate: 2021-04-01
