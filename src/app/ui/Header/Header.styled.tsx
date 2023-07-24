@@ -1,6 +1,6 @@
 'use client';
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 
 import { Breakpoint, up } from '@/shared/styles';
@@ -35,10 +35,10 @@ export const Line = styled(motion.div)`
 export const Logo = styled(motion.a)`
     display: flex;
     align-items: center;
-    height: 36px;
+    min-height: 36px;
 `;
 
-export const Container = styled(motion.header)`
+export const Container = styled(motion.header)<{ $isOpen: boolean }>`
     position: sticky;
     top: 0;
     display: flex;
@@ -46,54 +46,62 @@ export const Container = styled(motion.header)`
     align-items: center;
     z-index: 10;
 
-    &[data-animate='true'] {
-        ${Wrapper} {
-            ${up(Breakpoint.MD)} {
-                padding: 24px 20px 8px;
-            }
-        }
-
-        ${Line} {
-            ${up(Breakpoint.MD)} {
-                padding: 16px 24px 16px 20px;
-
-                &:before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    border: 1px solid ${({ theme }) => theme.colors.purple80};
-                    border-radius: inherit;
-                    pointer-events: none;
+    ${({ $isOpen }) =>
+        $isOpen &&
+        css`
+            ${Wrapper} {
+                ${up(Breakpoint.MD)} {
+                    padding: 24px 20px 8px;
                 }
             }
-        }
 
-        ${Logo} {
-            gap: 8px;
+            ${Line} {
+                ${up(Breakpoint.MD)} {
+                    padding: 16px 24px 16px 20px;
 
-            ${up(Breakpoint.MD)} {
-                gap: 16px;
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        border: 1px solid
+                            ${({ theme }) => theme.colors.purple80};
+                        border-radius: inherit;
+                        pointer-events: none;
+                    }
+                }
             }
-        }
-    }
+
+            ${Logo} {
+                gap: 8px;
+
+                ${up(Breakpoint.MD)} {
+                    gap: 16px;
+                }
+            }
+        `}
 `;
 
 export const Avatar = styled(motion.div)`
-    position: relative;
     display: none;
 
     ${up(Breakpoint.MD)} {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
+        height: 36px;
     }
 
     img {
-        width: 36px;
-        height: 36px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         border-radius: 50%;
     }
 `;
@@ -117,7 +125,7 @@ export const Menu = styled(motion.div)`
     ${up(Breakpoint.MD)} {
         display: flex;
         align-items: center;
-        height: 36px;
+        min-height: 36px;
     }
 `;
 

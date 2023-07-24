@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Breakpoint, up } from '@/shared/styles';
 import { Mdx as MdxComponent } from '@/shared/ui';
 
-export const Container = styled.div`
+export const Container = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -1,39 +1,54 @@
 'use client';
 
 import { useRef } from 'react';
+import { usePathname } from 'next/navigation';
+import { useMotionValueEvent, useScroll } from 'framer-motion';
 import Image from 'next/image';
 
+import { useHoverAnimate, useToggleable } from '@/shared/hooks';
 import { Container, Circle, Video } from './Contact.styled';
-import { useApp, usePoint } from '@/shared/hooks';
-
-import contact from '../../../public/images/contact.svg';
 
 export default function Contact() {
-    const containerRef = useRef<HTMLAnchorElement>(null);
-    const { x, y, isHover } = usePoint(containerRef);
-    const { introVisible } = useApp();
+    const videoRef = useRef<HTMLDivElement>(null);
+
+    const pathname = usePathname();
+    const isHomePage = pathname === '/';
+
+    const { isOpen, onOpen, onClose } = useToggleable(!isHomePage);
+
+    const { scrollYProgress } = useScroll();
+    useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+        if (isHomePage) {
+            if (latest > 0.25) {
+                onOpen();
+            } else {
+                onClose();
+            }
+        }
+    });
+
+    const [scope] = useHoverAnimate<HTMLAnchorElement>({
+        container: videoRef,
+        transitionMove: { duration: 0.3 },
+        transitionLeave: { type: 'spring', mass: 1.6, stiffness: 320 },
+    });
 
     return (
         <Container
             href="https://t.me/vlgrigoriev"
             target="_blank"
-            $visible={!introVisible}
-            ref={containerRef}
+            $isOpen={isOpen}
+            ref={scope}
         >
             <Circle>
-                <Image src={contact} alt="" fill />
+                <Image
+                    src="/images/contact.svg"
+                    alt="Vladislav Grigoriev"
+                    width={148}
+                    height={148}
+                />
             </Circle>
-            <Video
-                animate={{
-                    x: x / 8,
-                    y: y / 8,
-                    transition: {
-                        type: 'spring',
-                        mass: 1.8,
-                        stiffness: isHover ? 80 : 280,
-                    },
-                }}
-            >
+            <Video ref={videoRef}>
                 <video
                     src="/memoji-video.mp4"
                     autoPlay

@@ -27,11 +27,16 @@ export const Circle = styled.div`
     pointer-events: none;
 
     img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         animation: ${rotate} 20s linear infinite;
     }
 `;
 
-export const Video = styled(motion.div)`
+export const Video = styled.div`
     position: relative;
     width: 100px;
     height: 100px;
@@ -47,14 +52,14 @@ export const Video = styled(motion.div)`
     }
 `;
 
-export const Container = styled.a<{ $visible: boolean }>`
+export const Container = styled.a<{ $isOpen: boolean }>`
     position: fixed;
     right: 60px;
     bottom: 40px;
     display: none;
     will-change: transform;
-    opacity: ${({ $visible }) => ($visible ? 1 : 0)};
-    transform: scale(${({ $visible }) => ($visible ? 1 : 0.8)});
+    opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
+    transform: scale(${({ $isOpen }) => ($isOpen ? 1 : 0.8)});
     transition:
         opacity 0.3s,
         transform 0.3s;

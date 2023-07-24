@@ -22,7 +22,6 @@ import {
     Menu,
     MenuItem,
 } from './Header.styled';
-import memoji from '../../../../public/images/memoji.jpg';
 
 export default function Header() {
     const { colors } = useTheme()!;
@@ -36,9 +35,9 @@ export default function Header() {
 
     const { scrollYProgress } = useScroll();
 
-    useMotionValueEvent(scrollYProgress, 'change', (latestValue) => {
+    useMotionValueEvent(scrollYProgress, 'change', (latest) => {
         if (isTablet) {
-            if (latestValue > 0.25) {
+            if (latest > 0.25) {
                 onOpen();
             } else {
                 onClose();
@@ -60,30 +59,31 @@ export default function Header() {
 
     return (
         <Container
+            $isOpen={isOpen}
             initial={{ opacity: 0, y: -60 }}
             animate={{ opacity: 1, y: 0 }}
-            data-animate={isOpen}
-            layout
             layoutRoot
+            layout
         >
             <Wrapper transition={transition} layout>
                 <Line animate={animate} transition={transition} layout>
                     <Logo href="/" transition={transition} layout>
                         <Avatar
-                            initial={{
-                                width: 0,
-                                opacity: 0,
-                                transform: 'scale(0)',
-                            }}
+                            initial={{ width: 0, scale: 0, opacity: 0 }}
                             animate={{
                                 width: isOpen ? 36 : 0,
+                                scale: isOpen ? 1 : 0,
                                 opacity: isOpen ? 1 : 0,
-                                transform: `scale(${isOpen ? 1 : 0})`,
                             }}
                             transition={transition}
                             layout
                         >
-                            <Image src={memoji} alt={'Vladislav Grigoriev'} />
+                            <Image
+                                src="/images/memoji.jpg"
+                                alt="Vladislav Grigoriev"
+                                width={36}
+                                height={36}
+                            />
                         </Avatar>
                         <Name transition={transition} layout>
                             vlgrigoriev.{' '}

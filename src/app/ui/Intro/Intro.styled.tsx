@@ -48,9 +48,16 @@ export const Avatar = styled(motion.div)`
         bottom: -4px;
         background: linear-gradient(225deg, #f94392 0%, #5d4ffc 100%);
         border-radius: 50%;
+        z-index: -1;
     }
 
     img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         border-radius: 50%;
         border: 4px solid ${({ theme }) => theme.colors.black};
         box-shadow: 0 0 80px rgba(145, 73, 236, 0.4);
