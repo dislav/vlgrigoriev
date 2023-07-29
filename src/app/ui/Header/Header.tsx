@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import {
     Target,
@@ -15,26 +16,52 @@ import { useMediaQuery, useScrollTo, useToggleable } from '@/shared/hooks';
 import {
     Container,
     Wrapper,
-    Line,
+    Row,
     Avatar,
     Logo,
     Name,
     Menu,
     MenuItem,
+    Burger,
 } from './Header.styled';
+import { MobileMenu } from './ui';
 
 export default function Header() {
+    const containerRef = useRef<HTMLElement>(null);
+
     const { colors } = useTheme()!;
+
     const { isOpen, onOpen, onClose } = useToggleable();
+    const {
+        isOpen: isOpenMenu,
+        onClose: onCloseMenu,
+        onToggle,
+    } = useToggleable();
 
     const isTablet = useMediaQuery({ minWidth: Breakpoint.MD });
+    useEffect(() => {
+        if (isTablet && isOpenMenu) {
+            onCloseMenu();
+        }
+    }, [isTablet]);
+
     const { registerAnchor } = useScrollTo({
-        offset: -120,
+        offset: () => {
+            if (!isTablet && containerRef.current) {
+                onCloseMenu();
+
+                const height =
+                    containerRef.current.getBoundingClientRect().height;
+
+                return -height - 24;
+            }
+
+            return -132;
+        },
         transition: { duration: 1, ease: [0.2, 0.85, 0.25, 1] },
     });
 
     const { scrollYProgress } = useScroll();
-
     useMotionValueEvent(scrollYProgress, 'change', (latest) => {
         if (isTablet) {
             if (latest > 0.25) {
@@ -48,8 +75,8 @@ export default function Header() {
     const animate: Target = {
         background: isTablet
             ? rgba(colors.purple80, isOpen ? 0.7 : 0)
-            : rgba(colors.purple80, 0.7),
-        backdropFilter: isTablet ? `blur(${isOpen ? 16 : 0}px)` : 'blur(16px)',
+            : rgba(colors.purple80, 0),
+        backdropFilter: isTablet ? `blur(${isOpen ? 16 : 0}px)` : 'blur(0px)',
     };
 
     const transition: Transition = {
@@ -57,16 +84,26 @@ export default function Header() {
         ease: [0.2, 0.85, 0.25, 1],
     };
 
+    const menuItems = (
+        <>
+            <MenuItem {...registerAnchor('home')}>Главная</MenuItem>
+            <MenuItem {...registerAnchor('projects')}>Проекты</MenuItem>
+            <MenuItem {...registerAnchor('experience')}>Опыт</MenuItem>
+        </>
+    );
+
     return (
         <Container
             $isOpen={isOpen}
+            $isOpenMenu={isOpenMenu}
+            ref={containerRef}
             initial={{ opacity: 0, y: -60 }}
             animate={{ opacity: 1, y: 0 }}
             layoutRoot
             layout
         >
             <Wrapper transition={transition} layout>
-                <Line animate={animate} transition={transition} layout>
+                <Row animate={animate} transition={transition} layout>
                     <Logo href="/" transition={transition} layout>
                         <Avatar
                             initial={{ width: 0, scale: 0, opacity: 0 }}
@@ -91,15 +128,11 @@ export default function Header() {
                         </Name>
                     </Logo>
                     <Menu transition={transition} layout>
-                        <MenuItem {...registerAnchor('home')}>Главная</MenuItem>
-                        <MenuItem {...registerAnchor('projects')}>
-                            Проекты
-                        </MenuItem>
-                        <MenuItem {...registerAnchor('experience')}>
-                            Опыт
-                        </MenuItem>
+                        {menuItems}
                     </Menu>
-                </Line>
+                    <Burger isOpen={isOpenMenu} onClick={onToggle} />
+                </Row>
+                <MobileMenu isOpen={isOpenMenu}>{menuItems}</MobileMenu>
             </Wrapper>
         </Container>
     );

@@ -47,21 +47,31 @@ export function useScrollTo(options?: UseScrollToProps) {
                         : options.offset
                     : 0;
 
-                const offsetTop = top + scrollY + offset;
+                let offsetTop = top + scrollY + offset;
+                if (offsetTop < 0) {
+                    offsetTop = 0;
+                } else if (
+                    offsetTop + window.innerHeight >
+                    document.body.scrollHeight
+                ) {
+                    offsetTop = document.body.scrollHeight - window.innerHeight;
+                }
 
-                setAnimation(
-                    animate(scrollY, offsetTop, {
-                        ...(options?.transition ?? {}),
-                        onComplete: () => {
-                            setAnimation(undefined);
-                            options?.transition?.onComplete?.();
-                        },
-                        onUpdate: (latest) => {
-                            window.scrollTo(0, latest);
-                            options?.transition?.onUpdate?.(latest);
-                        },
-                    })
-                );
+                if (scrollY !== offsetTop) {
+                    setAnimation(
+                        animate(scrollY, offsetTop, {
+                            ...(options?.transition ?? {}),
+                            onComplete: () => {
+                                setAnimation(undefined);
+                                options?.transition?.onComplete?.();
+                            },
+                            onUpdate: (latest) => {
+                                window.scrollTo(0, latest);
+                                options?.transition?.onUpdate?.(latest);
+                            },
+                        })
+                    );
+                }
             }
         };
 

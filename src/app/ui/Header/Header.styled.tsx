@@ -2,31 +2,36 @@
 
 import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
+import { rgba } from 'polished';
 
 import { Breakpoint, up } from '@/shared/styles';
+import { Burger as BurgerComponent } from './ui';
 
 export const Wrapper = styled(motion.div)`
     display: flex;
-    align-items: center;
+    flex-direction: column;
     width: 100%;
     max-width: ${({ theme }) => theme.variables.maxWidth + 120}px;
+    background: ${({ theme }) => rgba(theme.colors.purple80, 0.7)};
+    backdrop-filter: blur(16px);
 
     ${up(Breakpoint.MD)} {
+        flex-direction: row;
+        background: none;
+        backdrop-filter: none;
         padding: 32px 80px;
     }
 `;
 
-export const Line = styled(motion.div)`
+export const Row = styled(motion.div)`
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
-    backdrop-filter: blur(16px);
     padding: 20px;
 
     ${up(Breakpoint.MD)} {
-        justify-content: space-between;
         border-radius: 40px;
         padding: 0;
     }
@@ -38,12 +43,18 @@ export const Logo = styled(motion.a)`
     min-height: 36px;
 `;
 
-export const Container = styled(motion.header)<{ $isOpen: boolean }>`
+export const Container = styled(motion.header)<{
+    $isOpen: boolean;
+    $isOpenMenu: boolean;
+}>`
     position: sticky;
     top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: ${({ $isOpenMenu }) => ($isOpenMenu ? '20px' : null)};
+    overflow: ${({ $isOpenMenu }) => ($isOpenMenu ? 'hidden' : null)};
+    transition: border-radius 0.3s ease-in-out;
     z-index: 10;
 
     ${({ $isOpen }) =>
@@ -55,7 +66,7 @@ export const Container = styled(motion.header)<{ $isOpen: boolean }>`
                 }
             }
 
-            ${Line} {
+            ${Row} {
                 ${up(Breakpoint.MD)} {
                     padding: 16px 24px 16px 20px;
 
@@ -131,7 +142,18 @@ export const Menu = styled(motion.div)`
 
 export const MenuItem = styled.a`
     color: ${({ theme }) => theme.colors.white};
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
-    line-height: 24px;
+    line-height: 32px;
+
+    ${up(Breakpoint.MD)} {
+        font-size: 16px;
+        line-height: 24px;
+    }
+`;
+
+export const Burger = styled(BurgerComponent)`
+    ${up(Breakpoint.MD)} {
+        display: none;
+    }
 `;
