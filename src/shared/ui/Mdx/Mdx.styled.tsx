@@ -48,17 +48,3 @@ export const Container = styled.article`
         }
     }
 `;
-
-export const SectionContent = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 32px;
-
-    ${up(Breakpoint.MD)} {
-        font-size: 18px;
-        line-height: 32px;
-    }
-`;

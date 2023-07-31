@@ -1,2 +1,1 @@
-export * from './Header';
-export * from './Preview';
+export * from './Details';

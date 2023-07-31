@@ -7,6 +7,10 @@ export const Project = defineDocumentType(() => ({
     filePathPattern: `projects/**/*.mdx`,
     contentType: 'mdx',
     fields: {
+        image: {
+            type: 'string',
+            required: true,
+        },
         title: {
             type: 'string',
             required: true,
@@ -15,20 +19,12 @@ export const Project = defineDocumentType(() => ({
             type: 'string',
             required: true,
         },
+        tags: {
+            type: 'list',
+            of: { type: 'string' },
+        },
         url: {
             type: 'string',
-        },
-        image: {
-            type: 'string',
-            required: true,
-        },
-        preview: {
-            type: 'string',
-            required: true,
-        },
-        background: {
-            type: 'string',
-            required: true,
         },
         publishAt: {
             type: 'date',

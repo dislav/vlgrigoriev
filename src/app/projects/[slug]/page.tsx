@@ -4,8 +4,8 @@ import { Transition } from 'framer-motion';
 
 import MotionConfig from '@/app/motion-config';
 import { allProjects } from 'contentlayer/generated';
-import { Container, Mdx } from './page.styled';
-import { Header, Preview } from './ui';
+import { Container, Wrapper, Mdx } from './page.styled';
+import { Details } from './ui';
 
 interface ParamsProps {
     params: {
@@ -53,19 +53,17 @@ export default function Page({ params }: ParamsProps) {
                     }}
                 />
 
-                <Header
-                    title={project.title}
-                    description={project.description}
-                    url={project.url}
-                    publishAt={project.publishAt}
-                />
+                <Wrapper>
+                    <Details
+                        title={project.title}
+                        description={project.description}
+                        tags={project.tags}
+                        url={project.url}
+                        publishAt={project.publishAt}
+                    />
 
-                <Preview
-                    image={project.preview}
-                    background={project.background}
-                />
-
-                <Mdx code={project.body.code} />
+                    <Mdx code={project.body.code} />
+                </Wrapper>
             </Container>
         </MotionConfig>
     );

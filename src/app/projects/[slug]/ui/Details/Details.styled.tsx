@@ -8,14 +8,16 @@ import { Breakpoint, up } from '@/shared/styles';
 export const Container = styled(motion.div)`
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    max-width: ${({ theme }) => theme.variables.maxWidth}px;
-    padding: 40px 20px;
+    gap: 32px;
+    padding: 40px 20px 0;
 
-    ${up(Breakpoint.MD)} {
-        gap: 40px;
-        padding: 80px 20px;
+    ${up(Breakpoint.XL)} {
+        position: sticky;
+        top: 0;
+        gap: 0;
+        width: 40%;
+        height: 100vh;
+        padding: 80px 20px 120px;
     }
 
     a {
@@ -25,7 +27,7 @@ export const Container = styled(motion.div)`
         color: ${({ theme }) => theme.colors.white};
         font-size: 16px;
         font-weight: 500;
-        line-height: 24px;
+        line-height: 32px;
 
         ${up(Breakpoint.MD)} {
             font-size: 18px;
@@ -65,25 +67,37 @@ export const Back = styled(motion.div)`
 `;
 
 export const Content = styled.div`
+    flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: flex-start;
-    gap: 10px;
+    gap: 24px;
 
     ${up(Breakpoint.MD)} {
-        gap: 20px;
+        gap: 32px;
     }
 `;
 
-export const Description = styled.span`
+export const ContentWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    ${up(Breakpoint.MD)} {
+        gap: 16px;
+    }
+`;
+
+export const Subtitle = styled.span`
     color: ${({ theme }) => theme.colors.primary};
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     line-height: 24px;
 
     ${up(Breakpoint.MD)} {
-        font-size: 24px;
-        line-height: 32px;
+        font-size: 20px;
+        line-height: 24px;
     }
 `;
 
@@ -94,7 +108,19 @@ export const Title = styled.h1`
     line-height: 48px;
 
     ${up(Breakpoint.MD)} {
-        font-size: 48px;
-        line-height: 48px;
+        font-size: 40px;
+        line-height: 56px;
+    }
+`;
+
+export const Description = styled.p`
+    color: ${({ theme }) => theme.colors.gray};
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+
+    ${up(Breakpoint.MD)} {
+        font-size: 16px;
+        line-height: 32px;
     }
 `;

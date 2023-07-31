@@ -1,17 +1,13 @@
-import Image from 'next/image';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { MDXComponents } from 'mdx/types';
 
-import { Container, SectionContent } from './Mdx.styled';
-import { Section } from '../Section';
-import { TwoImages } from '../TwoImages';
+import { Container } from './Mdx.styled';
+import { Image, Paragraph, Section } from './ui';
 
 const components: MDXComponents = {
-    // @ts-ignore
     Image,
-    SectionContent,
+    Paragraph,
     Section,
-    TwoImages,
 };
 
 interface MdxProps {
