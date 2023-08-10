@@ -20,7 +20,7 @@ export default function ProjectCard({
         <Link className={className} href={`/${_raw.flattenedPath}`}>
             <Container initial="initial" whileHover="scale">
                 <Preview>
-                    <Image src={image} alt={title} fill />
+                    <Image src={image} alt={title} width={560} height={560} />
                 </Preview>
                 <Content>
                     <Title>{title}</Title>

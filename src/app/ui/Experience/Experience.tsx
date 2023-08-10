@@ -1,20 +1,13 @@
 'use client';
 
-import { useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 
 import { allJobs } from 'contentlayer/generated';
-import { Container, Wrapper, Title, List } from './Experience.styled';
+import { Container, Wrapper, Title, List, Item } from './Experience.styled';
 import { ExperienceCard } from './ui';
 
 export default function Experience() {
-    const [activeIndex, setActiveIndex] = useState<number | null>(0);
-
-    const sortJobs = allJobs.sort((a, b) =>
-        new Date(a.startDate) > new Date(b.startDate) ? -1 : 1
-    );
-
-    const card: Variants = {
+    const animate: Variants = {
         hidden: {
             opacity: 0,
             y: 100,
@@ -25,9 +18,9 @@ export default function Experience() {
         },
     };
 
-    const onClick = (id: number) => (isExpended: boolean) => {
-        setActiveIndex(!isExpended ? id : null);
-    };
+    const sortJobs = allJobs.sort((a, b) =>
+        new Date(a.startDate) > new Date(b.startDate) ? -1 : 1
+    );
 
     return (
         <Container id="experience">
@@ -40,20 +33,16 @@ export default function Experience() {
                     Опыт работы
                 </Title>
                 <List>
-                    {sortJobs.map((job, index) => (
-                        <motion.div
+                    {sortJobs.map((job) => (
+                        <Item
                             key={job._id}
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true }}
-                            variants={card}
+                            variants={animate}
                         >
-                            <ExperienceCard
-                                expanded={activeIndex === index}
-                                onClick={onClick(index)}
-                                job={job}
-                            />
-                        </motion.div>
+                            <ExperienceCard {...job} />
+                        </Item>
                     ))}
                 </List>
             </Wrapper>

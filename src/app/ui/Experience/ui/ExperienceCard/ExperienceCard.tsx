@@ -1,61 +1,46 @@
 import dayjs from 'dayjs';
 
 import { Job } from 'contentlayer/generated';
-import { AccordionProps } from '@/shared/ui';
-import { Accordion } from '@/shared/ui';
+import { WithClassName } from '@/shared/types';
 import { ArrowLink } from '@/shared/icons';
-
 import {
     Container,
-    Header,
-    Title,
-    Body,
-    Footer,
-    Link,
+    Content,
     Icon,
-    Tags,
-    Tag,
+    Info,
+    Company,
+    LinkIcon,
+    Dates,
 } from './ExperienceCard.styled';
+import Image from 'next/image';
 
-interface ExperienceCardProps
-    extends Omit<AccordionProps, 'header' | 'children'> {
-    job: Job;
-}
-
-export default function ExperienceCard({ job, ...props }: ExperienceCardProps) {
-    const startDate = dayjs(job.startDate).format('YYYY');
-    const endDate = job.endDate
-        ? dayjs(job.endDate).format('YYYY')
-        : 'Настоящее время';
-
+export default function ExperienceCard({
+    className,
+    title,
+    company,
+    icon,
+    url,
+    startDate,
+    endDate,
+}: WithClassName<Job>) {
     return (
-        <Accordion
-            {...props}
-            header={
-                <Header>
-                    {startDate} — {endDate}
-                    <Title>
-                        {job.title} / {job.company}
-                    </Title>
-                </Header>
-            }
-        >
-            <Container>
-                <Body dangerouslySetInnerHTML={{ __html: job.body.html }} />
-                <Footer>
-                    <Link href={job.url} target="_blank">
-                        <Icon>{ArrowLink}</Icon>
-                        {job.urlText}
-                    </Link>
-                    {job.tags && (
-                        <Tags>
-                            {job.tags.map((tag) => (
-                                <Tag key={tag}>{tag}</Tag>
-                            ))}
-                        </Tags>
-                    )}
-                </Footer>
-            </Container>
-        </Accordion>
+        <Container className={className}>
+            <Content>
+                <Icon href={url} target="_blank">
+                    <Image src={icon} alt={title} width={56} height={56} />
+                </Icon>
+                <Info>
+                    <Company href={url} target="_blank">
+                        {company}
+                        <LinkIcon>{ArrowLink}</LinkIcon>
+                    </Company>
+                    {title}
+                </Info>
+            </Content>
+            <Dates>
+                {dayjs(startDate).format('YYYY')} —{' '}
+                {endDate ? dayjs(endDate).format('YYYY') : 'Настоящее время'}
+            </Dates>
+        </Container>
     );
 }

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import dayjs from 'dayjs';
+import Balancer, { Provider } from 'react-wrap-balancer';
 
 import { Project } from 'contentlayer/generated';
 import { WithClassName } from '@/shared/types';
@@ -35,12 +36,18 @@ export default function Details({
             </Back>
             <Content>
                 <ContentWrapper>
-                    <Subtitle>
-                        {dayjs(publishAt).format('YYYY')}
-                        {tags?.length ? ` • ${tags.join(', ')}` : ''}
-                    </Subtitle>
-                    <Title>{title}</Title>
-                    <Description>{description}</Description>
+                    <Provider>
+                        <Subtitle>
+                            {dayjs(publishAt).format('YYYY')}
+                            {tags?.length ? ` • ${tags.join(', ')}` : ''}
+                        </Subtitle>
+                        <Title>
+                            <Balancer>{title}</Balancer>
+                        </Title>
+                        <Description>
+                            <Balancer>{description}</Balancer>
+                        </Description>
+                    </Provider>
                 </ContentWrapper>
                 {url && (
                     <Link href={url} target="_blank">

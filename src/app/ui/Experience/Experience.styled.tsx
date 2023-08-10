@@ -5,7 +5,10 @@ import { motion } from 'framer-motion';
 
 import { Breakpoint, up } from '@/shared/styles';
 
-export const Container = styled.section``;
+export const Container = styled.section`
+    display: flex;
+    justify-content: center;
+`;
 
 export const Wrapper = styled.div`
     display: flex;
@@ -13,10 +16,9 @@ export const Wrapper = styled.div`
     width: 100%;
     gap: 32px;
     max-width: ${({ theme }) => theme.variables.maxWidth}px;
-    margin: 0 auto;
     padding: 0 20px;
 
-    ${up(Breakpoint.MD)} {
+    ${up(Breakpoint.LG)} {
         flex-direction: row;
         gap: 40px;
     }
@@ -41,4 +43,12 @@ export const List = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    ${up(Breakpoint.MD)} {
+        flex-direction: row;
+    }
+`;
+
+export const Item = styled(motion.div)`
+    flex: 1;
 `;
