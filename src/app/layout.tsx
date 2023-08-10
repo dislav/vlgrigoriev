@@ -1,24 +1,37 @@
 import { Metadata } from 'next';
+import { Manrope } from 'next/font/google';
 
 import StyledComponentsRegistry from '@/app/registry';
-
 import Providers from '@/app/providers';
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
-import Contact from '@/components/Contact/Contact';
+import { Footer } from '@/shared/ui';
+import { Contact } from '@/widgets/Contact';
+
+const manrope = Manrope({ subsets: ['cyrillic', 'latin'] });
+
+const title = 'Vladislav Grigoriev';
+const description = 'Frontend developer portfolio';
 
 export const metadata: Metadata = {
     title: {
-        default: 'Vladislav Grigoriev • Frontend Developer',
-        template: 'Vladislav Grigoriev • %s',
+        default: title,
+        template: `%s • ${title}`,
     },
-    description: 'Frontend developer portfolio',
-    icons: {
-        icon: '/favicon.ico',
-    },
+    description,
     openGraph: {
-        title: 'Vladislav Grigoriev • Frontend Developer',
+        title: {
+            default: title,
+            template: `%s • ${title}`,
+        },
+        description,
     },
+    twitter: {
+        title: {
+            default: title,
+            template: `%s • ${title}`,
+        },
+        description,
+    },
+    metadataBase: new URL('https://vlgrigoriev.dev'),
 };
 
 export default function RootLayout({
@@ -27,12 +40,10 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en">
-            <head />
+        <html lang="ru" className={manrope.className}>
             <body>
                 <StyledComponentsRegistry>
                     <Providers>
-                        <Header />
                         {children}
                         <Footer />
                         <Contact />

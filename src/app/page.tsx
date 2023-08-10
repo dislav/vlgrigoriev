@@ -1,16 +1,24 @@
-import { allProjects } from 'contentlayer/generated';
+import { Transition } from 'framer-motion';
+
+import MotionConfig from '@/app/motion-config';
 
 import { Main } from './page.styled';
-import Intro from '@/components/Intro/Intro';
-import ProjectList from '@/components/ProjectList/ProjectList';
-import Experience from '@/components/Experience/Experience';
+import { Header, Intro, Projects, Experience } from './ui';
 
 export default function Home() {
+    const transition: Transition = {
+        duration: 1.3,
+        ease: [0.2, 0.85, 0.25, 1],
+    };
+
     return (
-        <Main>
-            <Intro />
-            <ProjectList projects={allProjects} />
-            <Experience />
-        </Main>
+        <MotionConfig transition={transition}>
+            <Header />
+            <Main>
+                <Intro />
+                <Projects />
+                <Experience />
+            </Main>
+        </MotionConfig>
     );
 }

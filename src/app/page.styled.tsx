@@ -2,8 +2,14 @@
 
 import styled from 'styled-components';
 
+import { Breakpoint, up } from '@/shared/styles';
+
 export const Main = styled.main`
     display: flex;
     flex-direction: column;
-    gap: 100px;
+    gap: 60px;
+
+    ${up(Breakpoint.LG)} {
+        gap: 100px;
+    }
 `;
