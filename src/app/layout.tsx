@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 
 import StyledComponentsRegistry from '@/app/registry';
 import Providers from '@/app/providers';
@@ -49,6 +50,7 @@ export default function RootLayout({
                         <Contact />
                     </Providers>
                 </StyledComponentsRegistry>
+                <Analytics />
             </body>
         </html>
     );
