@@ -27,8 +27,7 @@ export default function Contact() {
         }
     });
 
-    const [scope] = useHoverAnimate<HTMLAnchorElement>({
-        container: videoRef,
+    const [scope] = useHoverAnimate<HTMLAnchorElement>(videoRef, {
         transitionMove: { duration: 0.3 },
         transitionLeave: { type: 'spring', mass: 1.6, stiffness: 320 },
     });
